@@ -1,0 +1,38 @@
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import org.junit.Assert;
+import org.junit.jupiter.api.Test;
+
+
+
+class Tests {
+
+	@Test
+	void testDVDCreation() {
+		DVD uhf = new DVD("UHF", "97 minutes", new ArrayList<String>(Arrays.asList("Weird Al does some stuff", "Movie concludes")));
+		Assert.assertNotNull(uhf);
+	}
+	@Test
+	void testDVDTitle() {
+		DVD uhf = new DVD("UHF", "97 minutes", new ArrayList<String>(Arrays.asList("Weird Al does some stuff", "Movie concludes")));
+		Assert.assertEquals(uhf.getTitle(), "UHF");
+	}
+	@Test
+	void testDVDRunTime() {
+		DVD uhf = new DVD("UHF", "97 minutes", new ArrayList<String>(Arrays.asList("Weird Al does some stuff", "Movie concludes")));
+		Assert.assertEquals(uhf.getRunTime(), "97 minutes");
+	}
+	@Test
+	void testVHSCreation() {
+		VHS blairWitch = new VHS("The Blair Witch Project", "81 minutes", new ArrayList<String>(Arrays.asList("Into the woods", "Not out of them though")));
+		Assert.assertNotNull(blairWitch);
+	}
+	@Test
+	void testVHSTitle() {
+		Assert.assertEquals(blairWitch.getTitle(), "The Blair Witch Project");
+	}
+
+}

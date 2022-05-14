@@ -1,0 +1,41 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class DVD extends Movie {
+	
+	public DVD(String title, String runTime, ArrayList<String> scenes) {
+		setTitle(title);
+		setRunTime(runTime);
+		setScenes(scenes);
+	}
+	
+	@Override
+	public void play() {
+		Scanner scnr = new Scanner(System.in);
+		System.out.print("Which scene of the DVD would you like to watch?");
+		int sceneChoice = numberMenu(scnr, 0, scenes.size() - 1);
+		System.out.println("Scene " + (sceneChoice) + ": " + scenes.get(sceneChoice));
+		scnr.close();
+	}
+	@Override
+	public String toString() {
+		return "Title: " + getTitle() + "; RunTime: " + getRunTime() + "; Scenes: " + scenes.toString();
+	}
+	public static int numberMenu(Scanner scnr, int min, int max) {
+		System.out.print(" (" + min + "-" + max + "): ");
+		String response = scnr.nextLine();
+		try {
+			int result = Integer.parseInt(response);
+			if (min <= result && result <= max) {
+				return result;
+			} else {
+				System.out.print("Please enter a number in the proper range");
+				return numberMenu(scnr, min, max);
+			}
+		} catch (NumberFormatException e) {
+			System.out.print("Please enter a number");
+			return numberMenu(scnr, min, max);
+		}
+	}
+}

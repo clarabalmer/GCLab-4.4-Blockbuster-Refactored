@@ -1,0 +1,31 @@
+
+public class VHS extends Movie{
+	//fields
+	private int currentTime;
+	
+	//constructors
+	public VHS() {
+	}
+	
+	//methods
+	@Override
+	public void play() {
+		if (currentTime > scenes.size()) {
+			rewind();
+		} else {
+			System.out.println(scenes.get(currentTime));
+			currentTime++;
+		}	
+	}
+	public void rewind() {
+		currentTime = 0;
+	}
+	
+	//getters/setters
+	public int getCurrentTime() {
+		return currentTime;
+	}
+	public void setCurrentTime(int currentTime) {
+		this.currentTime = currentTime;
+	}
+}

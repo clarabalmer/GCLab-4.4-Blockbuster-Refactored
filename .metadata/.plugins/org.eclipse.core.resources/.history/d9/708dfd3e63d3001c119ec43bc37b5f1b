@@ -1,0 +1,79 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Blockbuster {
+	
+	public static ArrayList<Movie> movies = new ArrayList<>();
+
+	public static void main(String[] args) {
+		Scanner scnr = new Scanner(System.in);
+		fillMovies();
+		
+		System.out.println("Welcome to Blockbuster! We only have six movies now.");
+		boolean repeatMovie = true;
+		while (repeatMovie) {
+			displayMovieMenu();
+			String movieChoice = scnr.nextLine();
+			int movieCode = Integer.parseInt(movieChoice);
+			if (movieCode > movies.size() || movieCode < 1) {
+				System.out.println("\nThat isn't one of the choices, try again.\n");
+			} else {
+				movies.get(movieCode - 1).printInfo();
+				
+				System.out.print("\nDo you want to watch the movie? ");
+				repeatMovie = yesOrNo(scnr);
+				boolean repeatScenes = true;
+				while (repeatScenes) {
+					System.out.println("Which scene of " + movies.get(movieCode - 1).getTitle() + " would you like to watch? Select 0 to " + (movies.get(movieCode - 1).getScenes().size() - 1));
+					String sceneChoice = scnr.nextLine();
+					int sceneCode = Integer.parseInt(sceneChoice);
+					System.out.println("Scene " + sceneChoice + ": " + movies.get(movieCode - 1).getScenes().get(sceneCode) + "\n");
+					System.out.print("Watch another scene? ");
+					repeatScenes = yesOrNo(scnr);
+				}
+			}
+			
+			
+			
+		}
+		
+		
+		
+		
+		
+		scnr.close();
+	}
+	public static void displayMovieMenu() {
+		for (int i = 0; i < movies.size(); i++) {
+			System.out.println("  " + (i + 1) + " " + movies.get(i).getTitle());
+		}
+		System.out.print("Please select the movie you want to watch (1-" + movies.size() + "): ");
+	}
+	public static void fillMovies() {
+		movies.add(new VHS("Saw", "103 minutes", new ArrayList<String>(Arrays.asList("Two men and a dead body in a basement", "Murder traps by Jigsaw", "Detectives have a bad time", "Creepy orderly gets wrecked", "He was the dead body the whole time!"))));
+		movies.add(new VHS("The Lion King", "88 minutes", new ArrayList<String>(Arrays.asList("Lift a baby lion up", "King song, messing with Zazu", "Elephant graveyard", "Mufasa dies, dang", "Simba meets Timon and Pumba; eats bugs", "Nala guilt trips Simba", "Mufasa in the clouds", "Hyenas goose step a little", "Simba beats Scar and then the Hyenas finish it"))));
+		movies.add(new VHS("Jumanji", "104 minutes", new ArrayList<String>(Arrays.asList("Kids play a game, one gets turned into sand and sucked in", "Orphans come to visit", "Lions, alligators, ...monkeys?", "Robin Williams is the best", "new timeline, no more orphans"))));
+		movies.add(new DVD("Divergent", "140 minutes", new ArrayList<String>(Arrays.asList("Sorting hat, but it's sci-fi", "Main character chooses the daredevil caste", "She fistfights boys and loses", "Psychedelic fear injection test", "Capture the flag and ziplining in post-apocalypse Chicago", "Daredevil faction gets brainwashed for fascist ends", "Main character fights brainwashed boyfriend", "Trainhopping"))));
+		movies.add(new DVD("Finding Nemo", "100 minutes", new ArrayList<String>(Arrays.asList("Nemo's mom dies", "Overprotective dad, Nemo's lucky fin", "Touching the Butt", "Marlin meets Dori", "Sharks", "Turtles", "Jellyfish", "Nemo conquers his fears, escapes through a drain", "Marlin unionizes a school of fish", "Marlin is less codependent now"))));
+		movies.add(new DVD("Pride and Prejudice", "127 minutes", new ArrayList<String>(Arrays.asList("New rich men in town, Darcy snubs Lizzy", "Mr. Collins will inherit and is also the worst", "Lizzy turns Mr. Collins down, Charlotte says ok though", "Lizzy visits Charlotte, Darcy is there, everything is awkward", "Darcy proposes and Lizzy says never", "Darcy explains himself", "Lizzy travels with her aunt and uncle, sees Pemberley, feels real weird", "Darcy is super nice now???", "Lydia is ruined, Lydia is married, Lydia spills the beans", "Lady Catherine insults Lizzy", "Darcy proposes again, Lizzy is psyched now"))));
+	}
+	public static void enterContinue() {
+		try {
+			System.in.read();
+		} catch(Exception e) {}
+	}
+	public static boolean yesOrNo(Scanner scnr) {
+		System.out.print(" y/n ");
+		String response = scnr.nextLine();
+		if (response.equalsIgnoreCase("y")) {
+			return true;
+		} else if (response.equalsIgnoreCase("n")) {
+			return false;
+		} else {
+			System.out.println("I didn't understand. Please try again. ");
+			return yesOrNo(scnr);
+		}
+	}
+
+}

@@ -1,0 +1,18 @@
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import org.junit.jupiter.api.Test;
+
+import junit.framework.Assert;
+
+class Tests {
+
+	@Test
+	void testDVDCreation() {
+		DVD uhf = new DVD("UHF", "100 minutes", new ArrayList<String>(Arrays.asList("Weird Al does some stuff", "Movie concludes")));
+		Assert.assertEquals(uhf.toString(), false);
+	}
+
+}
