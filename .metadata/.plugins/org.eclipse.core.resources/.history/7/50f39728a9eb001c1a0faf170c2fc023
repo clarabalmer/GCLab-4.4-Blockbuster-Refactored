@@ -10,6 +10,11 @@ public class Blockbuster {
 		Scanner scnr = new Scanner(System.in);
 		fillMovies();
 		
+		System.out.println(search("Have a nice day", "day"));
+		System.out.println(search("Have a nice da", "day"));
+		
+		
+		
 		System.out.println("Welcome to Blockbuster! We only have six movies now.");
 		boolean repeatMovieChoice = true;
 		
@@ -37,7 +42,29 @@ public class Blockbuster {
 		System.out.println("Thanks for visiting!");
 
 		scnr.close();
-	}	
+	}
+	public static boolean search(String text, String searchTerm) {
+		for (int i = 0; i < text.length() - searchTerm.length() + 1; i++) {
+			if (textStartsWithWord(text.substring(i), searchTerm, 0)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	public static boolean textStartsWithWord(String text, String searchTerm, int index) {
+		if (index == searchTerm.length()) {
+			return true;
+		} else {
+			if (text.charAt(index) != searchTerm.charAt(index)) {
+				return false;
+			} else {
+				return textStartsWithWord(text, searchTerm, index + 1);
+			}
+		}
+	}
+	
+	
+	
 	public static void fillMovies() {
 		movies.add(new VHS("Saw", "103 minutes", new ArrayList<String>(Arrays.asList("Two men and a dead body in a basement", "Murder traps by Jigsaw", "Detectives have a bad time", "Creepy orderly gets wrecked", "He was the dead body the whole time!"))));
 		movies.add(new VHS("The Lion King", "88 minutes", new ArrayList<String>(Arrays.asList("Lift a baby lion up", "Dance with zebras, mess with Zazu", "Elephant graveyard", "Mufasa dies, dang", "Simba meets Timon and Pumba; eats bugs", "Nala guilt trips Simba", "Mufasa in the clouds", "Hyenas goose step a little", "Simba beats Scar and then the Hyenas finish it"))));
