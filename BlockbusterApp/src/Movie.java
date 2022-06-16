@@ -1,41 +1,17 @@
 import java.util.ArrayList;
 
-public abstract class Movie {
+public class Movie {
 	//fields
-	private String title;
-	private String runTime;
-	protected ArrayList<String> scenes;
+	Play play;
+	
+	//constructor
+	public Movie(Play play) {
+		this.play = play;
+	}
 	
 	//methods
-	public void printInfo() {
-		System.out.println("\nTitle: " + title);
-		System.out.println("RunTime: " + runTime);
+	public void play(ArrayList<String> scenes) {
+		play.play(scenes);
 	}
-	public void printScenes() {
-		for (int i = 0; i < scenes.size(); i++) {
-			System.out.print(i + ": ");
-			System.out.print(scenes.get(i));
-		}
-	}
-	abstract void play();
 	
-	//getters/setters
-	public void setTitle(String title) {
-		this.title = title;
-	}
-	public String getTitle() {
-		return title;
-	}
-	public void setRunTime(String runTime) {
-		this.runTime = runTime;
-	}
-	public String getRunTime() {
-		return runTime;
-	}
-	public void setScenes(ArrayList<String> scenes) {
-		this.scenes = scenes;
-	}
-	public ArrayList<String> getScenes() {
-		return scenes;
-	}
 }
